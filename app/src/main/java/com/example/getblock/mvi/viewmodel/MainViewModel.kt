@@ -35,7 +35,6 @@ class MainViewModel(
             is MainIntent.DataLoaded -> {}
             is MainIntent.GoToBlock -> onBlockFound(intent.blockId, _state.value.epoch.epoch)
             is MainIntent.SearchBlock -> searchBlock(intent.blockId)
-            is MainIntent.GoToBlock -> {}
             is MainIntent.ClearError -> {}
             is MainIntent.SetError -> {}
         }
