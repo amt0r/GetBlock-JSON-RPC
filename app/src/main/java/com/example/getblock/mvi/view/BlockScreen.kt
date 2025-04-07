@@ -72,14 +72,12 @@ fun BlockDetailScreen(blockId: Long, epoch: Int) {
             )
 
             Text(
-                text = "${blockId}",
+                text = "$blockId",
                 color = Color.Black,
                 style = TextStyle(fontSize = 16.sp)
             )
 
-            state.block?.let { block ->
-                BlockCard(block = block)
-            }
+            BlockCard(block = state.block)
         }
     }
 }

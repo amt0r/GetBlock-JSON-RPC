@@ -1,7 +1,6 @@
 package com.example.getblock.data.model
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonIgnoreUnknownKeys
 
 data class BlockList(
     val blocks: List<Block>
@@ -17,7 +16,6 @@ data class Block(
 )
 
 @Serializable
-@JsonIgnoreUnknownKeys
 data class BlockResult(
     val blockTime: Long,
     val blockhash: String,
@@ -26,7 +24,6 @@ data class BlockResult(
 )
 
 @Serializable
-@JsonIgnoreUnknownKeys
 data class BlockReward(
     val lamports: Long
 )

@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -42,7 +43,7 @@ class MainViewModel(
 
     private fun startDataRefresh() {
         viewModelScope.launch {
-            while (true) {
+            while (isActive) {
                 dispatch(MainIntent.LoadData)
                 delay(60_000)
             }

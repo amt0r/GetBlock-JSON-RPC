@@ -1,7 +1,6 @@
 package com.example.getblock.data.model
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonIgnoreUnknownKeys
 
 data class Epoch(
     val epoch: Int = 0,
@@ -13,7 +12,6 @@ data class Epoch(
 )
 
 @Serializable
-@JsonIgnoreUnknownKeys
 data class EpochResult(
     val absoluteSlot: Long,
     val epoch: Int,

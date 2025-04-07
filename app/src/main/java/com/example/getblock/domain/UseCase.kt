@@ -6,7 +6,7 @@ import com.example.getblock.data.model.BlockList
 import com.example.getblock.data.model.Epoch
 import com.example.getblock.data.model.Supply
 
-const val NUM_OF_BLOCKS_IN_LIST = 4
+const val NUM_OF_BLOCKS_IN_LIST = 4 // each block request takes a long time
 const val DIVIDE = 1000000000L
 
 
@@ -20,7 +20,7 @@ class UseCase {
     }
 
 
-    suspend fun getSupplyInfo(): Supply? {
+    private suspend fun getSupplyInfo(): Supply? {
         val response = ApiService.getSupply()
 
         return response?.result?.value?.let {
@@ -36,7 +36,7 @@ class UseCase {
         }
     }
 
-    suspend fun getEpochInfo(): Epoch? {
+    private suspend fun getEpochInfo(): Epoch? {
         val response = ApiService.getEpoch()
 
         return response?.result?.let {
@@ -73,12 +73,12 @@ class UseCase {
         }
     }
 
-    suspend fun getBlockList(slot: Long): List<Long>? {
+    private suspend fun getBlockList(slot: Long): List<Long>? {
         val response = ApiService.getBlocks(slot - NUM_OF_BLOCKS_IN_LIST + 1, slot)
         return response?.result
     }
 
-    suspend fun getBlockListData(slot: Long, epoch: Int): BlockList? {
+    private suspend fun getBlockListData(slot: Long, epoch: Int): BlockList? {
         val blocks = mutableListOf<Block>()
 
         val blockSlots = getBlockList(slot)

@@ -59,7 +59,7 @@ fun BlockCard(block: Block) {
             style = TextStyle(fontSize = fontSize)
         )
         Text(
-            text = "${block.time}",
+            text = block.time,
             color = Color.Black,
             style = TextStyle(fontSize = fontSize)
         )
@@ -70,7 +70,7 @@ fun BlockCard(block: Block) {
             style = TextStyle(fontSize = fontSize)
         )
         Text(
-            text = "${block.blockhash}",
+            text = block.blockhash,
             color = Color.Black,
             style = TextStyle(fontSize = fontSize)
         )
@@ -103,7 +103,7 @@ fun BlockCard(block: Block) {
             style = TextStyle(fontSize = fontSize)
         )
         Text(
-            text = "${block.previousBlockhash}",
+            text = block.previousBlockhash,
             color = Color.Black,
             style = TextStyle(fontSize = fontSize)
         )

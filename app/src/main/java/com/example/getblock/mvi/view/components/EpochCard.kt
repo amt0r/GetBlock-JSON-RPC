@@ -125,7 +125,7 @@ fun EpochCard(epoch: Epoch) {
             )
 
             Text(
-                text = "${epoch.time}",
+                text = epoch.time,
                 color = Color.DarkGray,
                 modifier = Modifier.padding(vertical = 4.dp)
             )

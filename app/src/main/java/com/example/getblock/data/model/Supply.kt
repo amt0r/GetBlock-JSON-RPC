@@ -1,7 +1,6 @@
 package com.example.getblock.data.model
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonIgnoreUnknownKeys
 
 data class Supply(
     val circulating: Long = 0,
@@ -12,7 +11,6 @@ data class Supply(
 )
 
 @Serializable
-@JsonIgnoreUnknownKeys
 data class SupplyValue(
     val circulating: Long,
     val nonCirculating: Long,
@@ -20,7 +18,6 @@ data class SupplyValue(
 )
 
 @Serializable
-@JsonIgnoreUnknownKeys
 data class SupplyResult(
     val value: SupplyValue
 )
