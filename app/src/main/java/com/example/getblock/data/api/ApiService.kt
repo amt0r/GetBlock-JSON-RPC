@@ -74,7 +74,7 @@ object ApiService {
             "getBlock",
             listOf(
                 Json.encodeToJsonElement(slot),
-                Json.encodeToJsonElement(mapOf("maxSupportedTransactionVersion" to 0))
+                Json.encodeToJsonElement(mapOf("maxSupportedTransactionVersion" to 1))
             )
         )
     }
