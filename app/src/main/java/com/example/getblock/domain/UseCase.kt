@@ -6,7 +6,7 @@ import com.example.getblock.data.model.BlockList
 import com.example.getblock.data.model.Epoch
 import com.example.getblock.data.model.Supply
 
-const val NUM_OF_BLOCKS_IN_LIST = 4 // each block request takes a long time
+const val NUM_OF_BLOCKS_IN_LIST = 10 // each block request takes a long time
 const val DIVIDE = 1000000000L
 
 

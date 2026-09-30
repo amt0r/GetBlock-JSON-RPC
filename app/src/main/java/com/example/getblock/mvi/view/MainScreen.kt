@@ -1,14 +1,15 @@
 package com.example.getblock.mvi.view
 
 import android.widget.Toast
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -36,26 +37,18 @@ fun MainScreen(viewModel: MainViewModel, navController: NavHostController) {
         }
     }
 
-    val state = viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsState()
 
-    if (state.value.isLoading) {
-        CircularProgressIndicator(
-            modifier = Modifier
-                .fillMaxSize()
-                .wrapContentSize(Alignment.Center),
-            color = Color(0xFFB623CE),
-            strokeWidth = 6.dp
-        )
-    } else {
-        state.value.error?.let { errorMessage ->
-            val context = LocalContext.current
+    state.error?.let { errorMessage ->
+        val context = LocalContext.current
 
-            LaunchedEffect(errorMessage) {
-                Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
-                viewModel.dispatch(MainIntent.ClearError)
-            }
+        LaunchedEffect(errorMessage) {
+            Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+            viewModel.dispatch(MainIntent.ClearError)
         }
+    }
 
+    Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn {
             item {
                 TopPart(viewModel = viewModel)
@@ -67,22 +60,31 @@ fun MainScreen(viewModel: MainViewModel, navController: NavHostController) {
 
             item {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    SupplyCard(supply = state.value.supply)
+                    SupplyCard(supply = state.supply)
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    EpochCard(epoch = state.value.epoch)
+                    EpochCard(epoch = state.epoch)
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     BlockListCard(
-                        blocks = state.value.blocks,
-                        viewModel = viewModel
+                        blocks = state.blocks, viewModel = viewModel
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }
+
+        if (state.isLoading) {
+            LinearProgressIndicator(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.TopCenter),
+                color = Color(0xFFB623CE)
+            )
+        }
+
     }
 }

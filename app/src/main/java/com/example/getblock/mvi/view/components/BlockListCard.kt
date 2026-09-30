@@ -61,7 +61,7 @@ fun BlockListCard(blocks: List<Block>, viewModel: MainViewModel) {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .heightIn(max = 220.dp)
+                        .heightIn(max = 420.dp)
                 ) {
                     itemsIndexed(blocks) { index, block ->
                         Column(
